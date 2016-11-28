@@ -4,7 +4,7 @@ from itertools import groupby
 from operator import itemgetter
 import numpy as np
 import random
-import pdb
+import pdb,sys
 train_data = "../data/ml-1m/ratings.dat"
 hidden_vector_size = 100
 alpha = 0.01
@@ -27,7 +27,8 @@ def MatrixFactorization():
         
     print users_num
     #SGD
-    for loop in range(int(users_num * 60)):
+    max_loop = int(users_num * 60 )
+    for loop in range(max_loop):
         index = random.randint(0,users_num - 1)
         userid,rates = uniq_user[index]
         w0 = user_param_dict[userid]
@@ -40,7 +41,8 @@ def MatrixFactorization():
             w0_g += g * w1
         user_param_dict[userid] -= w0_g /len(rates) 
         if loop % 500 == 0:
-            print loop
+            print "loop:{0}/{1}".format(loop,max_loop)
+            sys.stdout.flush()
     totoal_error = 0
     total_num = 0
     for userid,rates in uniq_user:
@@ -51,6 +53,22 @@ def MatrixFactorization():
             totoal_error += np.abs((score - target))
             total_num += 1
     print "total sqrt error:",totoal_error / total_num
+
+    fw = open("../data/user_vector.txt","w")
+    for k,v in user_param_dict.iteritems():
+        fw.write(str(k))
+        for dim in v:
+            fw.write(" "+str(dim))
+        fw.write("\n")
+    fw.close()
+    
+    fw = open("../data/movie_vector.txt","w")
+    for k,v in movie_param_dict.iteritems():
+        fw.write(str(k))
+        for dim in v:
+            fw.write(" "+str(dim))
+        fw.write("\n")
+    fw.close()
 
 if __name__ == '__main__':
     MatrixFactorization()
