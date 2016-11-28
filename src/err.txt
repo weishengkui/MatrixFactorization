@@ -1,0 +1,5 @@
+total sqrt error: 1.0172756711
+total sqrt error: 1.3023518340
+total sqrt error: 0.899352521429
+
+
