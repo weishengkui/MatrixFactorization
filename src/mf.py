@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 #coding:utf8
-from itertools import groupby
-from operator import itemgetter
 import numpy as np
 import random
 import pdb,sys
@@ -10,20 +8,29 @@ hidden_vector_size = 100
 alpha = 0.01
 
 def MatrixFactorization():
-    data = [map(lambda y :int(y),x.strip().split("::")[:3]) for x in open(train_data)]
+    #groupby id
     uniq_user = []
-    for key,items in groupby(data,itemgetter(0)):
-        temp = [key,[x[1:] for x in items]]
-        uniq_user.append(temp)
+    for line in open(train_data):
+        data = map(lambda y :int(y), line.strip().split("::")[:3])
+        if not uniq_user or data[0] != uniq_user[-1][0]:
+            uniq_user.append([data[0],[data[1:]]])
+        else:
+            uniq_user[-1][1].append(data[1:])
+
     users_num = len(uniq_user)
-    uniq_movie = set([m[1] for m in data])
+    #create nets
+    #layer_0
     user_param_dict = {}
     for k,v in uniq_user:
         user_param_dict[k] = np.random.randn(hidden_vector_size) 
     
+    #layer_1
     movie_param_dict = {}
-    for movieid in uniq_movie:
-        movie_param_dict[movieid] = np.random.randn(hidden_vector_size) 
+    for k,vs in uniq_user:
+        for v in vs:
+            if v[0] in movie_param_dict:
+                continue
+            movie_param_dict[v[0]] = np.random.randn(hidden_vector_size) 
         
     print users_num
     #SGD

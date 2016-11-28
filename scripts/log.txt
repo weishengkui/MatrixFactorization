@@ -1,52 +1,6 @@
-6040
-loop:0/362400
-loop:500/362400
-loop:1000/362400
-loop:1500/362400
-loop:2000/362400
-loop:2500/362400
-loop:3000/362400
-loop:3500/362400
-loop:4000/362400
-loop:4500/362400
-loop:5000/362400
-loop:5500/362400
-loop:6000/362400
-loop:6500/362400
-loop:7000/362400
-loop:7500/362400
-loop:8000/362400
-loop:8500/362400
-loop:9000/362400
-loop:9500/362400
-loop:10000/362400
-loop:10500/362400
-loop:11000/362400
-loop:11500/362400
-loop:12000/362400
-loop:12500/362400
-loop:13000/362400
-loop:13500/362400
-loop:14000/362400
-loop:14500/362400
-loop:15000/362400
-loop:15500/362400
-loop:16000/362400
-loop:16500/362400
-loop:17000/362400
-loop:17500/362400
-loop:18000/362400
-loop:18500/362400
-loop:19000/362400
-loop:19500/362400
-loop:20000/362400
-loop:20500/362400
-loop:21000/362400
-loop:21500/362400
-loop:22000/362400
-loop:22500/362400
-loop:23000/362400
-loop:23500/362400
-loop:24000/362400
-loop:24500/362400
-loop:25000/362400
+Traceback (most recent call last):
+  File "../src/mf.py", line 76, in <module>
+    MatrixFactorization()
+  File "../src/mf.py", line 21, in MatrixFactorization
+    uniq_movie = set([m[1] for m in data])
+TypeError: 'int' object has no attribute '__getitem__'
