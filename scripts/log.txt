@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "../src/mf.py", line 76, in <module>
-    MatrixFactorization()
-  File "../src/mf.py", line 21, in MatrixFactorization
-    uniq_movie = set([m[1] for m in data])
-TypeError: 'int' object has no attribute '__getitem__'

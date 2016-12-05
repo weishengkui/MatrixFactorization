@@ -4,8 +4,8 @@ import numpy as np
 import random
 import pdb,sys
 train_data = "../data/ml-1m/ratings.dat"
-hidden_vector_size = 100
-alpha = 0.01
+hidden_vector_size = 145
+alpha = 0.0045
 
 def MatrixFactorization():
     #groupby id
@@ -34,7 +34,7 @@ def MatrixFactorization():
         
     print users_num
     #SGD
-    max_loop = int(users_num * 60 )
+    max_loop = int(users_num * 90 )
     for loop in range(max_loop):
         index = random.randint(0,users_num - 1)
         userid,rates = uniq_user[index]
